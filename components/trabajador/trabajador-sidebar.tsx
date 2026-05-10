@@ -20,7 +20,7 @@ import {
 const navItems = [
   { label: "Pedidos", href: "/trabajador", icon: ClipboardList },
   { label: "Productos", href: "/trabajador/productos", icon: Package },
-  { label: "Registrar Venta", href: "/trabajador/ventas", icon: CreditCard },
+  { label: "Registrar Venta", href: "/trabajador/registrar-venta", icon: CreditCard },
   { label: "Devoluciones", href: "/trabajador/devoluciones", icon: RotateCcw },
 ]
 
