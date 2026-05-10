@@ -50,14 +50,11 @@ interface LineaVenta {
 
 type MetodoPago = "efectivo" | "yape" | "plin" | "tarjeta"
 
-// Generate next sale ID
-function generateSaleId(): string {
-  const mockSaleId = "VTA-0014" // ID fijo mientras desarrollas
-  return mockSaleId;
-}
+// ✅ Mock sale ID - sin localStorage
+const SALE_ID_MOCK = "VTA-0014"
 
 export default function RegistrarVentaPage() {
-  const [saleId] = useState(() => generateSaleId())
+  const [saleId] = useState(SALE_ID_MOCK)
   const [lineas, setLineas] = useState<LineaVenta[]>([])
   const [metodoPago, setMetodoPago] = useState<MetodoPago | null>(null)
   const [montoRecibido, setMontoRecibido] = useState<string>("")
@@ -169,9 +166,6 @@ export default function RegistrarVentaPage() {
 
   // Process confirmed sale
   const processSale = () => {
-    // Save last sale ID 
-    localStorage.setItem("lastSaleId", "VTA-0014")
-
     toast.success("Venta confirmada", {
       description: `${saleId} - Total: S/ ${total.toFixed(2)}`
     })
@@ -215,7 +209,8 @@ export default function RegistrarVentaPage() {
     <div className="min-h-screen bg-background flex">
       <TrabajadorSidebar />
 
-      <div className="flex-1 flex flex-col lg:ml-64">
+      {/* ✅ LAYOUT CORREGIDO - El sidebar ya maneja su propio ancho, no necesitas lg:ml-64 */}
+      <div className="flex-1 flex flex-col">
         <TrabajadorTopbar />
 
         <main className="flex-1 p-4 lg:p-6 space-y-6">
@@ -246,7 +241,7 @@ export default function RegistrarVentaPage() {
                 <div className="text-center py-12 text-muted-foreground">
                   <Receipt className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <p>No hay productos agregados</p>
-                  <p className="text-sm">Haz clic en &quot;Agregar Producto&quot; para comenzar</p>
+                  <p className="text-sm">Haz clic en "Agregar Producto" para comenzar</p>
                 </div>
               ) : (
                 <div className="overflow-x-auto">
