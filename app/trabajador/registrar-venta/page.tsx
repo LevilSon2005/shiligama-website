@@ -52,9 +52,8 @@ type MetodoPago = "efectivo" | "yape" | "plin" | "tarjeta"
 
 // Generate next sale ID
 function generateSaleId(): string {
-  const lastId = localStorage.getItem("lastSaleId") || "0"
-  const nextNumber = parseInt(lastId) + 1
-  return `VTA-${nextNumber.toString().padStart(4, "0")}`
+  const mockSaleId = "VTA-0014" // ID fijo mientras desarrollas
+  return mockSaleId;
 }
 
 export default function RegistrarVentaPage() {
@@ -104,7 +103,7 @@ export default function RegistrarVentaPage() {
         })
         return
       }
-      setLineas(lineas.map(l => 
+      setLineas(lineas.map(l =>
         l.codigo === selectedProduct.id.toString()
           ? { ...l, cantidad: newCantidad, subtotal: newCantidad * l.precioUnitario }
           : l
@@ -179,7 +178,7 @@ export default function RegistrarVentaPage() {
     })
 
     setIsConfirmDialogOpen(false)
-    
+
     // Reset form for next sale
     setLineas([])
     setMetodoPago(null)
@@ -198,11 +197,11 @@ export default function RegistrarVentaPage() {
   const processBoletaGeneration = () => {
     // Mock APISUNAT call
     const boletaNumber = `B001-${Math.floor(Math.random() * 99999).toString().padStart(5, "0")}`
-    
+
     toast.success("Boleta generada", {
       description: `Número: ${boletaNumber} (SUNAT Mock)`
     })
-    
+
     setIsBoletaDialogOpen(false)
   }
 
@@ -324,11 +323,10 @@ export default function RegistrarVentaPage() {
                     <Badge
                       key={metodo.value}
                       variant={metodoPago === metodo.value ? "default" : "outline"}
-                      className={`cursor-pointer px-4 py-2 text-sm flex items-center gap-2 transition-colors ${
-                        metodoPago === metodo.value
+                      className={`cursor-pointer px-4 py-2 text-sm flex items-center gap-2 transition-colors ${metodoPago === metodo.value
                           ? "bg-[#0D4525] hover:bg-[#0D4525]/90"
                           : "hover:bg-muted"
-                      }`}
+                        }`}
                       onClick={() => setMetodoPago(metodo.value)}
                     >
                       {metodo.icon}
@@ -423,11 +421,10 @@ export default function RegistrarVentaPage() {
                   <div
                     key={product.id}
                     onClick={() => setSelectedProduct(product)}
-                    className={`p-3 border-b last:border-b-0 cursor-pointer transition-colors ${
-                      selectedProduct?.id === product.id
+                    className={`p-3 border-b last:border-b-0 cursor-pointer transition-colors ${selectedProduct?.id === product.id
                         ? "bg-[#0D4525]/10"
                         : "hover:bg-muted"
-                    }`}
+                      }`}
                   >
                     <div className="flex justify-between items-start">
                       <div>
