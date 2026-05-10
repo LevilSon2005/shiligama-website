@@ -206,14 +206,13 @@ export default function RegistrarVentaPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="flex h-screen bg-background">
       <TrabajadorSidebar />
 
-      {/* ✅ LAYOUT CORREGIDO - El sidebar ya maneja su propio ancho, no necesitas lg:ml-64 */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden lg:ml-64">
         <TrabajadorTopbar />
 
-        <main className="flex-1 p-4 lg:p-6 space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6">
           {/* Page header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
