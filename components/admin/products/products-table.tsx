@@ -36,9 +36,10 @@ interface ProductsTableProps {
   products: Product[]
   onEdit: (product: Product) => void
   onDelete: (productId: string) => void
+  readOnly?: boolean
 }
 
-export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps) {
+export function ProductsTable({ products, onEdit, onDelete, readOnly = false }: ProductsTableProps) {
   const getStockBadge = (product: Product) => {
     if (product.stock === 0) {
       return (
@@ -75,7 +76,7 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
               <TableHead className="text-right">Precio</TableHead>
               <TableHead>Stock</TableHead>
               <TableHead>Estado</TableHead>
-              <TableHead className="w-[70px]">Acciones</TableHead>
+              {!readOnly && <TableHead className="w-[70px]">Acciones</TableHead>}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -123,6 +124,7 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                       </Badge>
                     )}
                   </TableCell>
+                  {!readOnly && (
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -169,6 +171,7 @@ export function ProductsTable({ products, onEdit, onDelete }: ProductsTableProps
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>
+                  )}
                 </TableRow>
               ))
             )}
