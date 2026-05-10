@@ -14,11 +14,13 @@ import {
   ShoppingCart,
   LogOut,
   User,
+  CreditCard,
 } from "lucide-react"
 
 const navItems = [
   { label: "Pedidos", href: "/trabajador", icon: ClipboardList },
   { label: "Productos", href: "/trabajador/productos", icon: Package },
+  { label: "Registrar Venta", href: "/trabajador/ventas", icon: CreditCard },
   { label: "Devoluciones", href: "/trabajador/devoluciones", icon: RotateCcw },
 ]
 
