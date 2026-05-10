@@ -169,9 +169,8 @@ export default function RegistrarVentaPage() {
 
   // Process confirmed sale
   const processSale = () => {
-    // Save last sale ID
-    const saleNumber = parseInt(saleId.split("-")[1])
-    localStorage.setItem("lastSaleId", saleNumber.toString())
+    // Save last sale ID 
+    localStorage.setItem("lastSaleId", "VTA-0014")
 
     toast.success("Venta confirmada", {
       description: `${saleId} - Total: S/ ${total.toFixed(2)}`
